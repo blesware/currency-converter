@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Menu {
 
-    //Metodo para leer por teclado unicamente String's
+    //Metodo para leer por teclado
     private static String input() {
         Scanner input = new Scanner(System.in);
         String x = input.nextLine();
@@ -15,94 +15,82 @@ public class Menu {
     }
 
     //Metodo para desplegar el menu de opciones de manera estatica
-    public static void desplegar(List<Currency> currencys) {
+    public static void deployMenu(List<Currency> currencys) {
 
-        String opt = "";
-        int x = 0;
+        //HashMap para guardar el orden de las opciones de la nueva lista
+        HashMap<Integer, String> mapMenu = new HashMap<>();
+
+        int j = 1, x = 0;
 
         System.out.println("Bienvenido a Currency Converter v1.0");
         System.out.println("By: Blesware");
 
-        while(x == 0) {
+        do {
+
+            x = 0;
+            j = 1;
 
             System.out.println("***********************************");
             System.out.println("Seleccione su moneda");
-            System.out.println("1) Dolar Americano[USD]");
-            System.out.println("2) Peso Argentino [ARS]");
-            System.out.println("3) Peso Colombiano [COP]");
-            System.out.println("4) Peso Chileno [CLP]");
-            System.out.println("5) Real Brasileño [BRL]");
-            System.out.println("6) Salir");
+
+            //Creando la lista de opciones
+            for (int i = 0; i < currencys.size(); i++) {
+
+                System.out.println(j + ") " + currencys.get(i).getNombre() + " [" + currencys.get(i).getBase_code() + "]");
+                mapMenu.put(j, currencys.get(i).getBase_code());
+                j++;
+            }
+
+            System.out.println((mapMenu.size() + 1) + ") Salir");
             System.out.print("Digite la opcion: ");
-            opt = input();
+            String opt = input();
             System.out.println("***********************************");
 
-            switch (opt.trim()) {
+            System.out.println("");
 
-                case "1":
+            //Recorriendo el hashMap en busca de la opcion digitada
+            for (int i = 1; i <= mapMenu.size(); i++) {
 
-                    desplegarSubMenu("USD", currencys);
+                if (opt.trim().equals(String.valueOf(i))) {
+
+                    deploySubMenu(mapMenu.get(i), currencys);
                     waitKey();
-                    break;
+                    i = mapMenu.size() + 1;
 
-                case "2":
+                } else if (opt.trim().equals(String.valueOf(mapMenu.size() + 1))) {
 
-                    desplegarSubMenu("ARS", currencys);
-                    waitKey();
-                    break;
-
-                case "3":
-
-                    desplegarSubMenu("COP", currencys);
-                    waitKey();
-                    break;
-
-                case "4":
-
-                    desplegarSubMenu("CLP", currencys);
-                    waitKey();
-                    break;
-
-                case "5":
-
-                    desplegarSubMenu("BRL", currencys);
-                    waitKey();
-                    break;
-
-                case "6":
-
-                    System.out.println("");
                     System.out.println("Ejecucion finalizada");
-
                     x = 1;
-                    break;
+                    i = mapMenu.size() + 1;
 
-                default:
+                } else if (i == mapMenu.size()) {
 
-                    System.out.println("");
                     System.out.println("Opcion no valida, vuelva a intentar");
                     System.out.println("");
+                }
             }
-        }
+
+        } while(x == 0);
     }
 
     //Metodo para desplegar el sub menu de opciones
-    private static void desplegarSubMenu(String iso, List<Currency> currencys) {
+    private static void deploySubMenu(String iso, List<Currency> currencys) {
 
+        //HashMap para guardar el orden de las opciones de la nueva lista
         HashMap<Integer, String> mapSubMenu = new HashMap<>();
 
-        int j = 1;
-        int x = 0;
-        double value = 0.0;
+        int j = 1, x = 0;
 
         do {
 
             x = 0;
+            j = 1;
 
             System.out.println("Selecione la moneda a la cual desea");
             System.out.println("hacer el cambio");
 
-            //Ignorando la moneda seleccionada anteriormente en la menu de opciones
+            //Ignorando la moneda seleccionada en el menu anterior
+            //Creando la lista de opciones
             for (int i = 0; i < currencys.size(); i++) {
 
                 if(!(currencys.get(i).getBase_code().equals(iso))) {
@@ -113,42 +101,25 @@ public class Menu {
                 }
             }
 
-            System.out.println("Digite la opcion: ");
+            System.out.print("Digite la opcion: ");
             String opt = input();
 
             System.out.println("");
 
-            switch (opt) {
+            //Recorriendo el hashMap en busca de la opcion digitada
+            for (int i = 1; i <= mapSubMenu.size(); i++) {
 
-                case "1":
+                if (opt.trim().equals(String.valueOf(i))) {
 
-                    value = pedirValor();
-                    System.out.println(Connection.respuesta(iso, mapSubMenu.get(1), value));
+                    System.out.println(Connection.response(iso, mapSubMenu.get(i), enterValue(iso, mapSubMenu.get(i))));
                     break;
 
-                case "2":
-
-                    value = pedirValor();
-                    System.out.println(Connection.respuesta(iso, mapSubMenu.get(2), value));
-                    break;
-
-                case "3":
-
-                    value = pedirValor();
-                    System.out.println(Connection.respuesta(iso, mapSubMenu.get(3), value));
-                    break;
-
-                case "4":
-
-                    value = pedirValor();
-                    System.out.println(Connection.respuesta(iso, mapSubMenu.get(4), value));
-                    break;
-
-                default:
+                } else if (i == mapSubMenu.size()) {
 
                     System.out.println("Opcion no valida, vuelva a intentar");
                     System.out.println("");
                     x = 1;
+                }
             }
 
         } while(x != 0);
@@ -157,7 +128,7 @@ public class Menu {
     }
 
     //Metodo para pedir el valor a cambiar
-    private static double pedirValor() {
+    private static double enterValue(String currencyOrigin, String currency) {
 
         String value = "";
 
@@ -165,7 +136,7 @@ public class Menu {
 
             try {
 
-                System.out.print("Digite el monto a cambiar: $");
+                System.out.print("Digite el monto de " + currencyOrigin + " a cambiar a " + currency + ": $");
                 value = input();
 
                 return Double.valueOf(value);
@@ -182,8 +153,8 @@ public class Menu {
     //Metodo para pausar la ejecucion momentaneamente
     private static void waitKey() {
 
+        System.out.println("");
         System.out.println("Presione cualquier tecla para continuar");
         String x = input();
-        System.out.println("");
     }
 }
