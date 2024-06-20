@@ -1,7 +1,6 @@
 package main;
 
 import connection.Connection;
-import converter.Converter;
 import converter.Currency;
 import java.util.*;
 
@@ -130,14 +129,12 @@ public class Menu {
     //Metodo para pedir el valor a cambiar
     private static double enterValue(String currencyOrigin, String currency) {
 
-        String value = "";
-
         while(true) {
 
             try {
 
                 System.out.print("Digite el monto de " + currencyOrigin + " a cambiar a " + currency + ": $");
-                value = input();
+                String value = input();
 
                 return Double.valueOf(value);
 

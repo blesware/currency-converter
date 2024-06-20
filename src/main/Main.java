@@ -10,11 +10,15 @@ public class Main {
         List<Currency> currencys = new ArrayList<>();
 
         //Para agregar mas monedas, basta con agregar mas objetos Currency al ArraList
+        //WARNING: Las monedas agregadas a este ArraList deben estar presentes en
+        //la lista de ExchangeRate-API https://www.exchangerate-api.com/docs/supported-currencies
+        //el base_code (Currency Code) debe coincidir al mensionado en la documentacion, el nombre es a eleccion
         currencys.add(new Currency("USD", "Dolar Americano"));
         currencys.add(new Currency("ARS", "Peso Argentino"));
         currencys.add(new Currency("COP", "Peso Colombiano"));
         currencys.add(new Currency("CLP", "Peso Chileno"));
         currencys.add(new Currency("BRL", "Real Brasileño"));
+        currencys.add(new Currency("VES", "Bolivar Venezolano"));
 
         try {
 
