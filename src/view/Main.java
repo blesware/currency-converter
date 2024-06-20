@@ -1,6 +1,6 @@
-package main;
+package view;
 
-import converter.Currency;
+import model.Currency;
 import java.util.*;
 
 public class Main {

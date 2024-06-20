@@ -1,4 +1,4 @@
-package converter;
+package model;
 
 public class Currency {
 

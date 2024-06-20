@@ -1,7 +1,7 @@
-package main;
+package view;
 
-import connection.Connection;
-import converter.Currency;
+import controller.Connection;
+import model.Currency;
 import java.util.*;
 
 public class Menu {

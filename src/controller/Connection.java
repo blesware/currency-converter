@@ -1,7 +1,7 @@
-package connection;
+package controller;
 
 import com.google.gson.*;
-import converter.Currency;
+import model.Currency;
 import java.net.URI;
 import java.net.http.*;
 
