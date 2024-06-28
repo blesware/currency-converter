@@ -25,7 +25,7 @@ public class Connection {
 
             double result = new Gson().fromJson(response.body(), Currency.class).getConversion_result();
 
-            return "$" + value + " " + currencyOrigin + " = $" + result + " " + currency;
+            return "$" + value + " " + currencyOrigin + " = $" + String.format("%.2f",result) + " " + currency;
 
         } catch (Exception e) {
 
