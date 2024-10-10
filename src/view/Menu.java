@@ -8,6 +8,7 @@ public class Menu {
 
     //Metodo para leer por teclado
     private static String input() {
+
         Scanner input = new Scanner(System.in);
         String x = input.nextLine();
         return x;
@@ -21,16 +22,14 @@ public class Menu {
 
         int j = 1, x = 0;
 
-        System.out.println("Bienvenido a Currency Converter v1.0");
-        System.out.println("By: Blesware");
+        System.out.println("Bienvenido a Currency Converter v1.0\nBy: Blesware");
 
         do {
 
             x = 0;
             j = 1;
 
-            System.out.println("***********************************");
-            System.out.println("Seleccione su moneda");
+            System.out.println("***********************************\nSeleccione su moneda");
 
             //Creando la lista de opciones
             for (int i = 0; i < currencys.size(); i++) {
@@ -43,9 +42,7 @@ public class Menu {
             System.out.println((mapMenu.size() + 1) + ") Salir");
             System.out.print("Digite la opcion: ");
             String opt = input();
-            System.out.println("***********************************");
-
-            System.out.println("");
+            System.out.println("***********************************\n");
 
             //Recorriendo el hashMap en busca de la opcion digitada
             for (int i = 1; i <= mapMenu.size(); i++) {
@@ -64,8 +61,7 @@ public class Menu {
 
                 } else if (i == mapMenu.size()) {
 
-                    System.out.println("Opcion no valida, vuelva a intentar");
-                    System.out.println("");
+                    System.out.println("Opcion no valida, vuelva a intentar\n");
                 }
             }
 
@@ -85,8 +81,7 @@ public class Menu {
             x = 0;
             j = 1;
 
-            System.out.println("Selecione la moneda a la cual desea");
-            System.out.println("hacer el cambio");
+            System.out.println("Selecione la moneda a la cual desea\nhacer el cambio");
 
             //Ignorando la moneda seleccionada en el menu anterior
             //Creando la lista de opciones
@@ -115,8 +110,7 @@ public class Menu {
 
                 } else if (i == mapSubMenu.size()) {
 
-                    System.out.println("Opcion no valida, vuelva a intentar");
-                    System.out.println("");
+                    System.out.println("Opcion no valida, vuelva a intentar\n");
                     x = 1;
                 }
             }
@@ -140,9 +134,7 @@ public class Menu {
 
             } catch (Exception e) {
 
-                System.out.println("");
-                System.out.println("El monto debe ser numerico, vuelva a intentarlo");
-                System.out.println("");
+                System.out.println("\nEl monto debe ser numerico, vuelva a intentarlo\n");
             }
         }
     }
@@ -150,8 +142,7 @@ public class Menu {
     //Metodo para pausar la ejecucion momentaneamente
     private static void waitKey() {
 
-        System.out.println("");
-        System.out.println("Presione cualquier tecla para continuar");
+        System.out.println("\nPresione cualquier tecla para continuar");
         String x = input();
     }
 }

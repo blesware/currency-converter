@@ -19,6 +19,7 @@ public class Main {
         currencys.add(new Currency("CLP", "Peso Chileno"));
         currencys.add(new Currency("BRL", "Real Brasileño"));
         currencys.add(new Currency("VES", "Bolivar Venezolano"));
+        currencys.add(new Currency("MXN", "Peso Mexicano"));
 
         try {
 

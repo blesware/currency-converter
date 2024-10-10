@@ -24,7 +24,7 @@ public class Currency {
         return nombre;
     }
 
-    public double getConversion_result() {
+    public double getConversionResult() {
         return conversion_result;
     }
 }

@@ -5,8 +5,8 @@ import model.Currency;
 import java.net.URI;
 import java.net.http.*;
 
-//Clase para manejo de la conexion con la API de ExchangeRate
-//por medio del protocolo http
+/*Clase para manejo de la conexion con la API de ExchangeRate
+ *por medio del protocolo http*/
 public class Connection {
 
     public static String response(String currencyOrigin, String currency, double value) {
@@ -23,9 +23,9 @@ public class Connection {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            double result = new Gson().fromJson(response.body(), Currency.class).getConversion_result();
+            double result = new Gson().fromJson(response.body(), Currency.class).getConversionResult();
 
-            return "$" + value + " " + currencyOrigin + " = $" + String.format("%.2f",result) + " " + currency;
+            return "$" + value + " " + currencyOrigin + " son equivalentes a $" + String.format("%.2f",result) + " " + currency;
 
         } catch (Exception e) {
 
